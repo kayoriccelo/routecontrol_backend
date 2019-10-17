@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from apps.auth.user.urls import router as users_router
 
+
 router = DefaultRouter()
 
 urlpatterns = (

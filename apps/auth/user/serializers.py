@@ -5,24 +5,34 @@ from .models import UserRotarization
 
 
 class UserRotarizationSerializer(serializers.Serializer):
-    fields_required = ['first_name', 'last_name', 'cpf', 'username', 'email', 'password']
+    fields_required = [
+        ('first_name', 'Primeiro Nome'),
+        ('last_name', 'Ultimo Nome'),
+        ('cpf', 'Cpf'),
+        ('username', 'Usuário'),
+        ('email', 'Email'),
+        ('password', 'Senha')
+    ]
 
     def validate(self, attrs):
         data = self.context['request'].data
-        
+
         criticas = []
         for field in self.fields_required:
-            if not field in data:
-                criticas.append(f'{field} não informado.')
+            if not field[0] in data:
+                criticas.append(f'{field[1]} não informado.')
+                continue
+
+            attrs[field[0]] = data[field[0]]
 
         if len(criticas) > 0:
             raise serializers.ValidationError(criticas)
 
         try:
             UserRotarization.objects.get(
-                Q(cpf=data['cpf']), 
-                Q(username=data['username']), 
-                Q(email=data['email'])
+                Q(cpf=attrs['cpf']),
+                Q(username=attrs['username']),
+                Q(email=attrs['email'])
             )
 
             raise serializers.ValidationError(u'Conta já cadastrado.')
@@ -31,22 +41,22 @@ class UserRotarizationSerializer(serializers.Serializer):
 
         return attrs
 
-    def save(self, **kwargs):
-        data = self.context['request'].data
+    def create(self, validated_data):
+        password = validated_data.pop('password')
 
         try:
             user_rotarization = UserRotarization(
-                cpf=data['cpf'],
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-                email=data['email'],
-                username=data['username'],
+                **validated_data,
                 is_active=True,
                 is_staff=False
             )
-            user_rotarization.set_password(data['password'])
+
+            user_rotarization.set_password(password)
             user_rotarization.save()
         except Exception as e:
-            raise serializers.ValidationError({'non_field_errors': [u'Não foi possível registrar uma nova conta. Error: ' + e.args[0]]})
+            raise serializers.ValidationError({'non_field_errors': [
+                u'Não foi possível registrar uma nova conta.'
+            ]})
 
         return user_rotarization
+ 

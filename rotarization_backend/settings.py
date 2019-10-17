@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'user.UserRoterization'
+AUTH_USER_MODEL = 'user.UserRotarization'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

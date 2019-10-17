@@ -1,0 +1,4 @@
+SECRET_KEY='chave-example'
+DEBUG=True
+ALLOWED_HOSTS=*
+CORS_ORIGIN_WHITELIST='http://example'

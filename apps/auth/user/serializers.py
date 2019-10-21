@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import UserRotarization
 
 
-class UserRotarizationSerializer(serializers.Serializer):
+class UserRotarizationCreateSerializer(serializers.Serializer):
     fields_required = [
         ('first_name', 'Primeiro Nome'),
         ('last_name', 'Ultimo Nome'),
@@ -60,3 +60,8 @@ class UserRotarizationSerializer(serializers.Serializer):
 
         return user_rotarization
  
+
+class UserRotarizationSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = UserRotarization
+        fields = ['id', 'first_name', 'last_name', 'cpf', 'is_admin']

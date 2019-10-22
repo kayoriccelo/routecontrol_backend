@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 
+from ..registrations.company.models import Company
+
 
 class ListPaginationMixin(object):
     def list(self, request, *args, **kwargs):
@@ -12,3 +14,10 @@ class ListPaginationMixin(object):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class FilterForCompanyMixin(object):
+    def get_queryset(self):
+        company = Company.objects.get(employees__cpf=self.request._user.cpf)
+        
+        return self.queryset.filter(company=company)

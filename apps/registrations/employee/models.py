@@ -10,7 +10,7 @@ class Employee(models.Model):
     
     user = models.OneToOneField(UserRotarization, verbose_name=_("Usuário"), null=True, related_name='users',
                                 on_delete=models.CASCADE)
-    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, related_name='employees',
+    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, related_name='users',
                                 on_delete=models.CASCADE)
 
     class Meta:

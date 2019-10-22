@@ -53,7 +53,8 @@ THIRD_APPS = [
 ROTERIZATION_APPS = [
     'apps.auth.user',
     'apps.registrations.company',
-    'apps.registrations.employee'
+    'apps.registrations.employee',
+    'apps.registrations.client',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + ROTERIZATION_APPS

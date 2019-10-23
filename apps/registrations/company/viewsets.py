@@ -14,5 +14,6 @@ class CompanyViewSet(viewsets.ModelViewSet, ListPaginationMixin):
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
 
     def get_queryset(self):
-        company = Company.objects.filter(employees__cpf=self.request._user.cpf)
-        return company
+        # company = Company.objects.filter(employees__cpf=self.request._user.cpf)
+        company = Company.objects.first()
+        return [company]

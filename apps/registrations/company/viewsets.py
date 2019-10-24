@@ -15,5 +15,5 @@ class CompanyViewSet(viewsets.ModelViewSet, ListPaginationMixin):
 
     def get_queryset(self):
         # company = Company.objects.filter(employees__cpf=self.request._user.cpf)
-        company = Company.objects.first()
-        return [company]
+        company = Company.objects.filter(id=Company.objects.first().id)
+        return company

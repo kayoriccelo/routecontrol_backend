@@ -5,7 +5,7 @@ from apps.auth.user.urls import router as user_routers
 from apps.registrations.company.urls import router as company_routers
 from apps.registrations.employee.urls import router as employee_routers
 from apps.registrations.client.urls import router as client_routers
-from apps.registrations.tower.urls import router as tower_routers
+from apps.registrations.localization.urls import router as localization_routers
 
 
 router = DefaultRouter()
@@ -16,5 +16,5 @@ urlpatterns = (
     company_routers.urls +
     employee_routers.urls + 
     client_routers.urls +
-    tower_routers.urls
+    localization_routers.urls
 )

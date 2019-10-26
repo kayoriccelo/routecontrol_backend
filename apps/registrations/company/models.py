@@ -7,6 +7,7 @@ class Company(models.Model):
     business_name = models.CharField(_(u'Razão social'), max_length=140)
     email = models.EmailField(_('Email'), null=True, blank=True)
     phone = models.CharField(_('Telefone'), max_length=20, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
     
     class Meta:
         verbose_name = _('Empresa')

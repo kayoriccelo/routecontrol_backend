@@ -1,16 +1,16 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from ..client.models import Client
-from ..company.models import Company
-
 PEDDING = 'P'
+IN_PROGRESS = "I"
 COMPLETED = 'C'
 
 STATUS = (
     (PEDDING, 'Pendente'),
+    (IN_PROGRESS, 'Em andamento'),
     (COMPLETED, 'Concluído'),
 )
+
 
 class Localization(models.Model):
     code = models.CharField(_('Código'), max_length=10)
@@ -19,7 +19,8 @@ class Localization(models.Model):
     longitude = models.CharField(_('Longitude'), max_length=100, null=True)
     address = models.CharField(_('Endereço'), max_length=300, null=True)
 
-    client = models.OneToOneField(Client, verbose_name=_("Cliente"), null=True, 
+    status = models.CharField(_('Situação'), max_length=1, choices=STATUS, default=PEDDING)
+    client = models.OneToOneField('client.Client', verbose_name=_("Cliente"), null=True, 
                                 related_name='localizations', on_delete=models.CASCADE)
     company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, 
                                 related_name='localizations', on_delete=models.CASCADE)

@@ -17,7 +17,8 @@ class Localization(models.Model):
     description = models.CharField(_('Descrição'), max_length=300)
     latitude = models.CharField(_('Latitude'), max_length=100, null=True)
     longitude = models.CharField(_('Longitude'), max_length=100, null=True)
-    
+    address = models.CharField(_('Endereço'), max_length=300, null=True)
+
     client = models.OneToOneField(Client, verbose_name=_("Cliente"), null=True, 
                                 related_name='localizations', on_delete=models.CASCADE)
     company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, 

@@ -15,7 +15,8 @@ class Scripting(models.Model):
     destiny_longitude = models.CharField(_('Destino Longitude'), max_length=100, null=True)
     destiny_address = models.CharField(_('Destino Endereço'), max_length=300, null=True)
 
-    localizations = models.ManyToManyField('localization.Localization', verbose_name='localization', related_name="scripting")
+    localizations = models.ManyToManyField('localization.Localization', 
+        verbose_name='localization', related_name="scripting", null=True)
     company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, 
                                 related_name='scriptings', on_delete=models.CASCADE)
 

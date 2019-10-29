@@ -20,7 +20,7 @@ class Localization(models.Model):
     address = models.CharField(_('Endereço'), max_length=300, null=True)
 
     status = models.CharField(_('Situação'), max_length=1, choices=STATUS, default=PEDDING)
-    client = models.OneToOneField('client.Client', verbose_name=_("Cliente"), null=True, 
+    client = models.ForeignKey('client.Client', verbose_name=_("Cliente"), null=True, 
                                 related_name='localizations', on_delete=models.CASCADE)
     company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, 
                                 related_name='localizations', on_delete=models.CASCADE)

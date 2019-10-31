@@ -12,3 +12,4 @@ class EmployeeViewSet(viewsets.ModelViewSet, ListPaginationMixin, FilterForCompa
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+    filter_fields = ('id',)

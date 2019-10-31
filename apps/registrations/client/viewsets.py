@@ -12,3 +12,4 @@ class ClientViewSet(viewsets.ModelViewSet, ListPaginationMixin, FilterForCompany
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+    filter_fields = ('id',)

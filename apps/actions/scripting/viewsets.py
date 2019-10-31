@@ -12,3 +12,4 @@ class ScriptingViewSet(viewsets.ModelViewSet, ListPaginationMixin, FilterForComp
     queryset = Scripting.objects.all()
     serializer_class = ScriptingSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+    filter_fields = ('id',)

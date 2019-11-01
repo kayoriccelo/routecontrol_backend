@@ -12,4 +12,10 @@ class LocalizationViewSet(viewsets.ModelViewSet, ListPaginationMixin, FilterForC
     queryset = Localization.objects.all()
     serializer_class = LocalizationSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
-    filter_fields = ('id',)
+    
+    def get_queryset(self):
+        kwargs = {}
+        
+        if 'ids' in self.request.query_params:
+            kwargs['id__in'] = self.request.query_params['ids'].split(',')
+        return self.queryset.filter(**kwargs)

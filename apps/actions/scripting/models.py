@@ -17,7 +17,7 @@ class Scripting(models.Model):
 
     localizations = models.ManyToManyField('localization.Localization', 
         verbose_name='localization', related_name="scripting", blank=True)
-    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, 
+    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), 
                                 related_name='scriptings', on_delete=models.CASCADE)
 
     class Meta:

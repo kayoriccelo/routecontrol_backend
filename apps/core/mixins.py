@@ -21,3 +21,13 @@ class FilterForCompanyMixin(object):
         company = Company.objects.get(employees__cpf=self.request._user.cpf)
         
         return self.queryset.filter(company=company)
+
+class IncludeCompanyMixin(object):
+    def include(self, instance, request):
+        try:
+            company = Company.objects.get(employees__cpf=request.user.cpf)
+        except Company.DoesNotExist:
+            raise serializers.ValidatorError({'non_field_errors': ['Empresa não encontrada.']})
+
+        instance.company = company
+        instance.save()

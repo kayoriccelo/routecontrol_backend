@@ -10,7 +10,7 @@ class Client(models.Model):
     email = models.EmailField(_('Email'), null=True, blank=True)
     phone = models.CharField(_('Telefone'), max_length=20, null=True, blank=True)
 
-    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), null=True, related_name='clients',
+    company = models.ForeignKey('company.Company', verbose_name=_('Empresa'), related_name='clients',
                                 on_delete=models.CASCADE)
 
     class Meta:

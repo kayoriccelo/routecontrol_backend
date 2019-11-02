@@ -13,22 +13,22 @@ class TokenCustomSerializer(TokenObtainPairSerializer):
         refresh = self.get_token(self.user)
 
         try:
-            UserRotarization.objects.get(cpf=self.user.cpf, is_superuser=False)
+            UserRotarization.objects.get(cpf=self.user.cpf)
         except UserRotarization.DoesNotExist:
-            raise serializers.ValidationError(u'Not Authorized.')
+            raise serializers.ValidationError(u'Cadastre uma conta.')
 
         try:
             employee = Employee.objects.get(cpf=self.user.cpf)
         except Employee.DoesNotExist:
             employee = None
 
-        try:
-            user = UserRotarization.objects.get(cpf=self.user.cpf, is_admin=True)
-        except UserRotarization.DoesNotExist:
-            user = None
+            try:
+                user = UserRotarization.objects.get(cpf=self.user.cpf, is_admin=True, company__isnull=False)
+            except UserRotarization.DoesNotExist:
+                user = None
 
-        if not user and not employee:
-            raise serializers.ValidationError(u'Aguardando autorização.')
+            if not user and not employee:
+                raise serializers.ValidationError(u'Aguardando autorização.')
 
         data['refresh'] = text_type(refresh)
         data['access'] = text_type(refresh.access_token)

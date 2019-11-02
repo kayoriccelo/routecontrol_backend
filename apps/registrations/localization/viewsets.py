@@ -9,13 +9,11 @@ class LocalizationViewSet(BaseViewSet):
     serializer_class = LocalizationSerializer
     
     def get_queryset(self):
-        try:
-            company = Company.objects.get(employees__cpf=self.request._user.cpf)
-        except Company.DoesNotExist:
-            company = None
+        queryset = super(LocalizationViewSet, self).get_queryset()
         
         kwargs = {}
         
         if 'ids' in self.request.query_params:
             kwargs['id__in'] = self.request.query_params['ids'].split(',')
-        return self.queryset.filter(company=company).filter(**kwargs)
+        
+        return queryset.filter(**kwargs)

@@ -5,7 +5,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from rest_framework_simplejwt import views as jwt_views
 
-from ..apps.auth.token.views import TokenCustomView
+from apps.auth.token.views import TokenCustomView
 
 
 urlpatterns = [

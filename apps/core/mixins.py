@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 
 from ..registrations.company.models import Company
+from ..registrations.employee.models import Employee
 
 
 class ListPaginationMixin(object):
@@ -17,20 +18,36 @@ class ListPaginationMixin(object):
 
 
 class FilterForCompanyMixin(object):
+    def _get_company(self, user):
+        if user.company:
+            return user.company
+        else:
+            try:
+                return Employee.objects.get(cpf=user.cpf).company
+            except Employee.DoesNotExist:
+                raise serializers.ValidatorError({'non_field_errors': [f'Empregado não encontrado com esse cpf: {user.cpf}.']})
+            except:
+                raise serializers.ValidatorError({'non_field_errors': ['Cpf cadastrado em mais de uma empresa.']})
+
     def get_queryset(self):
-        try:
-            company = Company.objects.get(employees__cpf=self.request._user.cpf)
-        except Company.DoesNotExist:
-            company = None
-        
+        company = self._get_company(self.request.user)
+
         return self.queryset.filter(company=company)
 
 
 class IncludeCompanyMixin(object):
+    def _get_company(self, user):
+        if user.company:
+            return user.company
+        else:
+            try:
+                return Employee.objects.get(cpf=user.cpf)
+            except:
+                raise serializers.ValidatorError({'non_field_errors': ['Cpf cadastrado em mais de uma empresa.']})
+
     def include(self, instance, request):
-        try:
-            company = Company.objects.get(employees__cpf=request.user.cpf)
-        except Company.DoesNotExist:
+        company = self._get_company(request.user)
+        if not company:
             raise serializers.ValidatorError({'non_field_errors': ['Empresa não encontrada.']})
 
         instance.company = company

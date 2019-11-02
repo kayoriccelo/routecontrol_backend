@@ -1,6 +1,5 @@
-from .models import Client
-
 from ...core.serializers import BaseSerializer
+from .models import Client
 
 
 class ClientSerializer(BaseSerializer):

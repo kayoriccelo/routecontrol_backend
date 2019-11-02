@@ -1,9 +1,8 @@
-from rest_framework import serializers
-
+from ...core.serializers import BaseSerializer
 from .models import Localization
 
 
-class LocalizationSerializer(serializers.ModelSerializer):
+class LocalizationSerializer(BaseSerializer):
     class Meta:
         model = Localization
         fields = '__all__'

@@ -18,9 +18,13 @@ class ListPaginationMixin(object):
 
 class FilterForCompanyMixin(object):
     def get_queryset(self):
-        company = Company.objects.get(employees__cpf=self.request._user.cpf)
+        try:
+            company = Company.objects.get(employees__cpf=self.request._user.cpf)
+        except Company.DoesNotExist:
+            company = None
         
         return self.queryset.filter(company=company)
+
 
 class IncludeCompanyMixin(object):
     def include(self, instance, request):

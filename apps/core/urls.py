@@ -8,6 +8,7 @@ from apps.registrations.employee.urls import router as employee_routers
 from apps.registrations.client.urls import router as client_routers
 from apps.registrations.localization.urls import router as localization_routers
 
+from apps.actions.dashboard.viewsets import DashboardViewSet
 from apps.actions.scripting.urls import router as scripting_routers
 
 
@@ -24,3 +25,7 @@ urlpatterns = (
 
     scripting_routers.urls
 )
+
+urlpatterns += [
+    url(r'^dashboard/', DashboardViewSet.as_view(), name='dashboard'),
+]

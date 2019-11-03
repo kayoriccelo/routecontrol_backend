@@ -1,16 +1,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 PEDDING = 'P'
-IN_PROGRESS = "I"
 COMPLETED = 'C'
 
 STATUS = (
     (PEDDING, 'Pendente'),
-    (IN_PROGRESS, 'Em andamento'),
     (COMPLETED, 'Concluído'),
 )
-
 
 class Localization(models.Model):
     code = models.CharField(_('Código'), max_length=10)

@@ -2,9 +2,9 @@ import datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-
+DISREGARDED = 'D'
 PEDDING = 'P'
-IN_PROGRESS = "I"
+IN_PROGRESS = 'I'
 COMPLETED = 'C'
 
 STATUS = (

@@ -45,10 +45,9 @@ class IncludeCompanyMixin(object):
             except:
                 raise serializers.ValidatorError({'non_field_errors': ['Cpf cadastrado em mais de uma empresa.']})
 
-    def include(self, instance, request):
+    def include(self, validated_data, request):
         company = self._get_company(request.user)
         if not company:
             raise serializers.ValidatorError({'non_field_errors': ['Empresa não encontrada.']})
 
-        instance.company = company
-        instance.save()
+        validated_data['company'] = company

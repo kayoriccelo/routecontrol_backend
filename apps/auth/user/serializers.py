@@ -65,3 +65,30 @@ class UserRotarizationSerializer(serializers.ModelSerializer):
      class Meta:
         model = UserRotarization
         fields = ['id', 'first_name', 'last_name', 'cpf', 'is_admin']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserRotarization
+        fields = ('id', 'first_name', 'last_name')
+
+    def validate(self, attrs):
+
+        if not 'new_password' in self.context['request'].data:
+            raise serializers.ValidationError(u'Nova senha não informada.')
+
+        attrs['new_password'] = self.context['request'].data['new_password']
+
+        return attrs
+
+    def update(self, instance, validated_data):
+        try:
+            instance.first_name = validated_data['first_name']
+            instance.last_name = validated_data['last_name']
+            instance.set_password(validated_data['new_password'])
+            instance.save()
+        except Exception as e:
+            raise serializers.ValidationError({'non_field_errors': [u'Não foi possível salvar o perfil. ']})
+
+        return instance

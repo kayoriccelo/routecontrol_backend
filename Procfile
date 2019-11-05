@@ -1,0 +1,1 @@
+web: gunicorn rotalization_backend.wsgi --log-file -

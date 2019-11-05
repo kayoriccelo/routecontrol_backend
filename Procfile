@@ -1,1 +1,1 @@
-web: gunicorn rotalization_backend.wsgi --log-file -
+web: gunicorn rotarization_backend.wsgi --log-file -

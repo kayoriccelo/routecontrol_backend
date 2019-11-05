@@ -24,12 +24,16 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'k7j*u670@tp0b$z@z2l=x295+0ruj1#q^8&jb2mk$6bji-9wi9' # env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG_ENV')
+DEBUG = True # env('DEBUG_ENV')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
+ALLOWED_HOSTS = 
+ALLOWED_HOSTS = [
+    "apicontrolerotas.herokuapp.com",
+    "127.0.0.1"
+] # env('ALLOWED_HOSTS', cast=list)
 
 
 # Application definition
@@ -174,4 +178,8 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = env('CORS_ORIGIN_WHITELIST', cast=tuple, default='localhost')
+CORS_ORIGIN_WHITELIST = CORS_ORIGIN_WHITELIST = [
+    "https://apicontrolerotas.herokuapp.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+] # env('CORS_ORIGIN_WHITELIST', cast=tuple, default='localhost')

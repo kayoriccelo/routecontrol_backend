@@ -29,7 +29,6 @@ SECRET_KEY = 'k7j*u670@tp0b$z@z2l=x295+0ruj1#q^8&jb2mk$6bji-9wi9' # env('SECRET_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # env('DEBUG_ENV')
 
-ALLOWED_HOSTS = 
 ALLOWED_HOSTS = [
     "apicontrolerotas.herokuapp.com",
     "127.0.0.1"

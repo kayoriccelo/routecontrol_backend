@@ -30,7 +30,7 @@ SECRET_KEY = 'k7j*u670@tp0b$z@z2l=x295+0ruj1#q^8&jb2mk$6bji-9wi9' # env('SECRET_
 DEBUG = True # env('DEBUG_ENV')
 
 ALLOWED_HOSTS = [
-    "apicontrolerotas.herokuapp.com",
+    "http://3.15.162.52",
     "127.0.0.1"
 ] # env('ALLOWED_HOSTS', cast=list)
 
@@ -178,7 +178,7 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = CORS_ORIGIN_WHITELIST = [
-    "https://apicontrolerotas.herokuapp.com",
+    "http://3.15.162.52",
     "http://localhost:3000",
     "http://127.0.0.1:3000"
 ] # env('CORS_ORIGIN_WHITELIST', cast=tuple, default='localhost')

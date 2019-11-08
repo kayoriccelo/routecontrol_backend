@@ -7,3 +7,4 @@ class EmployeeViewSet(BaseViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     filter_fields = ('id',)
+    search_fields = ('cpf', 'name')

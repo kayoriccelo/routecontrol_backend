@@ -7,3 +7,4 @@ class ClientViewSet(BaseViewSet):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     filter_fields = ('id',)
+    search_fields = ('cnpj', 'business_name')

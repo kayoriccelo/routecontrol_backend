@@ -7,6 +7,7 @@ from .serializers import LocalizationSerializer
 class LocalizationViewSet(BaseViewSet):
     queryset = Localization.objects.all()
     serializer_class = LocalizationSerializer
+    search_fields = ('code', 'description')
     
     def get_queryset(self):
         queryset = super(LocalizationViewSet, self).get_queryset()

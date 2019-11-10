@@ -49,6 +49,10 @@ class Scripting(models.Model):
     def localizations_count(self):
         return self.localizations.count()
 
+    @property
+    def employees_count(self):
+        return self.employees.count()
+
     class Meta:
         verbose_name = _('Roteirização')
         verbose_name_plural = _('Roteirizações')

@@ -9,10 +9,10 @@ from apps.auth.token.views import TokenCustomView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     url(r'^api/v1/', include('apps.core.urls')),
-    url(r'^token/$', TokenCustomView.as_view(), name='token_obtain_pair'),
-    url(r'^token-refresh/$', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    url(r'^api/token/$', TokenCustomView.as_view(), name='token_obtain_pair'),
+    url(r'^api/token-refresh/$', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ] + (
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -16,8 +16,8 @@ import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = environ.Env(DEBUG=(bool, False))
-env.read_env(os.path.join(BASE_DIR, '.env'))
+# env = environ.Env(DEBUG=(bool, False))
+# env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -54,14 +54,14 @@ THIRD_APPS = [
 ]
 
 ROTERIZATION_APPS = [
-    'apps.auth.user',
+    'apps.auth.user.apps.UserRotarizationConfig',
     
-    'apps.registrations.company',
-    'apps.registrations.employee',
-    'apps.registrations.client',
-    'apps.registrations.localization',
+    'apps.registrations.company.apps.CompanyConfig',
+    'apps.registrations.employee.apps.EmployeeConfig',
+    'apps.registrations.client.apps.ClientConfig',
+    'apps.registrations.localization.apps.LocalizationConfig',
 
-    'apps.actions.scripting',
+    'apps.actions.scripting.apps.ScriptingConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + ROTERIZATION_APPS
@@ -105,7 +105,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    
 }
 
 

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class ScriptingConfig(AppConfig):
-    name = 'scripting'
+    name = 'apps.actions.scripting'

@@ -9,7 +9,7 @@ djoser==1.7.0
 
 # Othes
 django-templated-mail==1.1.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2019.3
 sqlparse==0.3.0
 gunicorn==19.9.0
